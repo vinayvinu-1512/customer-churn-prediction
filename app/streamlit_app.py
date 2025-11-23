@@ -65,7 +65,7 @@ if st.button("Predict"):
     st.write("Input Summary:")
     st.write(df_input)
 
-  prediction = model.predict(input_data)
+prediction = model.predict(input_data)
 prediction_proba = model.predict_proba(input_data)[0][1]  # probability of staying
 
 if prediction == 1:
