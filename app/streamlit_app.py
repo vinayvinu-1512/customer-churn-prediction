@@ -23,7 +23,6 @@ DeviceProtection = st.selectbox("Device Protection", ['Yes', 'No'])
 TechSupport = st.selectbox("Tech Support", ['Yes', 'No'])
 StreamingTV = st.selectbox("Streaming TV", ['Yes', 'No'])
 StreamingMovies = st.selectbox("Streaming Movies", ['Yes', 'No'])
-
 PaperlessBilling = st.selectbox("Paperless Billing", ['Yes', 'No'])
 
 Contract = st.selectbox("Contract", ['Month-to-month', 'One year', 'Two year'])
@@ -62,19 +61,15 @@ df_input = pd.DataFrame({
 # ----------------------- PREDICT -----------------------
 
 if st.button("Predict"):
-    st.write("Input Summary:")
+    st.write("### Input Summary")
     st.write(df_input)
 
-prediction = model.predict(input_data)
-prediction_proba = model.predict_proba(input_data)[0][1]  # probability of staying
+    prediction = model.predict(df_input)
+    prediction_proba = model.predict_proba(df_input)[0][1]  # churn probability
 
-if prediction == 1:
-    result = "Customer will stay"
-else:
-    result = "Customer will churn"
+    st.subheader("Prediction Result")
 
-st.subheader("Prediction Result")
-st.write(f"{result} — Probability: {prediction_proba * 100:.2f}%")
-
-
-
+    if prediction[0] == 1:
+        st.error(f"❌ Customer will churn — Probability: {prediction_proba * 100:.2f}%")
+    else:
+        st.success(f"✔️ Customer will stay — Probability: {(1 - prediction_proba) * 100:.2f}%")
