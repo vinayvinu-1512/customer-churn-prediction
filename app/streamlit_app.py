@@ -65,13 +65,16 @@ if st.button("Predict"):
     st.write("Input Summary:")
     st.write(df_input)
 
-    pred = model.predict(df_input)[0]
-    prob = model.predict_proba(df_input)[0][1] * 100
+  prediction = model.predict(input_data)
+prediction_proba = model.predict_proba(input_data)[0][1]  # probability of staying
 
-    st.subheader("Prediction Result")
+if prediction == 1:
+    result = "Customer will stay"
+else:
+    result = "Customer will churn"
 
-    if pred == 1:
-        st.error(f"⚠️ Customer is likely to churn — Probability: {prob:.2f}%")
-    else:
-        st.success(f"✔️ Customer will stay — Probability: {prob:.2f}%")
+st.subheader("Prediction Result")
+st.write(f"{result} — Probability: {prediction_proba * 100:.2f}%")
+
+
 
