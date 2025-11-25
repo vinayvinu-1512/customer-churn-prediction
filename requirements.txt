@@ -1,9 +1,8 @@
-pandas
-numpy
-scikit-learn
-matplotlib
-seaborn
-joblib
 streamlit
-xgboost
-shap
+plotly
+pandas
+scikit-learn
+joblib
+streamlit-lottie
+requests
+fpdf
