@@ -197,12 +197,24 @@ def bulk_predict(df: pd.DataFrame) -> pd.DataFrame:
 
 # ------------------ PAGES ------------------
 def page_home():
-    st.markdown("<div class='card'><h2 class='main-title'>📊 Customer Churn SaaS Demo</h2></div>", unsafe_allow_html=True)
+    # Header: logo on left, title/text on right
+    col1, col2 = st.columns([1, 4])
+    with col1:
+        st.image("app/assets/churnx_logo.png", width=110)   # logo file we copied
+    with col2:
+        st.markdown("""
+            <div style="padding-left:10px;">
+                <h1 style='margin:0; font-size:34px; font-weight:800; color: #a8d8ff;'>ChurnX</h1>
+                <p style='margin:0; color:#bcdffb;'>AI-Powered Customer Churn Prediction — Predict. Prevent. Retain.</p>
+            </div>
+        """, unsafe_allow_html=True)
+
     st.write("This is a polished demo of an end-to-end churn prediction application — use the sidebar to navigate.")
     if lottie_json:
         st_lottie(lottie_json, height=220)
     st.markdown("---")
     st.markdown("<div class='card'> <h4>Features</h4> <ul><li>Single customer prediction with PDF report</li><li>Bulk CSV predictions & download</li><li>Dashboard visualizations</li></ul></div>", unsafe_allow_html=True)
+
 
 def page_predict():
     st.markdown("<div class='card'><h3>🔎 Single Prediction</h3></div>", unsafe_allow_html=True)
